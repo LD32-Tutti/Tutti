@@ -159,7 +159,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
 --- !u!1 &101836537
 GameObject:
   m_ObjectHideFlags: 0
@@ -391,7 +391,7 @@ Transform:
   m_LocalScale: {x: 3, y: .100000001, z: 3}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 10
 --- !u!1 &484122129
 GameObject:
   m_ObjectHideFlags: 0
@@ -560,7 +560,6 @@ GameObject:
   - 33: {fileID: 660906378}
   - 64: {fileID: 660906377}
   - 23: {fileID: 660906376}
-  - 20: {fileID: 660906380}
   m_Layer: 0
   m_Name: floor
   m_TagString: Floor
@@ -623,38 +622,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
---- !u!20 &660906380
-Camera:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 660906375}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: .192156866, g: .301960796, b: .474509805, a: .0196078438}
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  near clip plane: .300000012
-  far clip plane: 1000
-  field of view: 60
-  orthographic: 0
-  orthographic size: 5
-  m_Depth: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
-  m_HDR: 0
-  m_OcclusionCulling: 1
-  m_StereoConvergence: 10
-  m_StereoSeparation: .0219999999
 --- !u!1001 &719786693
 Prefab:
   m_ObjectHideFlags: 0
@@ -1126,7 +1093,7 @@ Transform:
   m_LocalScale: {x: 4, y: 2.00000119, z: 4.00000238}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 9
 --- !u!1 &1372106536
 GameObject:
   m_ObjectHideFlags: 0
@@ -1463,7 +1430,7 @@ Transform:
   - {fileID: 1240178063}
   - {fileID: 1372106541}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
 --- !u!1 &1975252539
 GameObject:
   m_ObjectHideFlags: 0

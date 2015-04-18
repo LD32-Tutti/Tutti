@@ -75,7 +75,6 @@ public class spawn_controller: MonoBehaviour {
         Vector3 cursorPosition = new Vector3(outOfScreenPosition.x, outOfScreenPosition.y, outOfScreenPosition.z);
 
         if(Physics.Raycast(ray, out hit, maxDistanceHit)){
-            Debug.Log(hit.transform.tag);
             if(hit.transform.CompareTag(planeTag)){
                cursorPosition.Set(hit.point.x, hit.point.y, hit.point.z);
             }

@@ -18,6 +18,7 @@ public class spawn_controller: MonoBehaviour {
         mButton = GetComponent<Button>();
         mTmpWall = (GameObject) Instantiate(Resources.Load("TmpWall"));
         mTmpWall.layer = 2; //Ignore Raycast
+        mTmpWall.transform.position = outOfScreenPosition;
     }
 
     void Start()

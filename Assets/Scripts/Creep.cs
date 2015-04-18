@@ -41,4 +41,9 @@ public class Creep : MonoBehaviour {
             Destroy(gameObject);
         }
 	}
+
+    void AddDamage(int damage)
+    {
+        gameObject.GetComponent<HitPoint>().hp -= damage;
+    }
 }

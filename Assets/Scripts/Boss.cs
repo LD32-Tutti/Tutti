@@ -3,7 +3,8 @@ using System.Collections;
 
 public class Boss : MonoBehaviour {
 
-    public int healthPoints;
+    public float attackRadius;
+    public int attackDamage;
 
 	// Use this for initialization
 	void Start () {
@@ -13,8 +14,15 @@ public class Boss : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+        // Attack
+        Vector3 center = new Vector3(
+               transform.position.x,
+               0,
+               transform.position.z
+            );
+        DamageAround(center, attackRadius, attackDamage);
+
         // Death
-         Debug.Log(gameObject.GetComponent<HitPoint>().hp);
         if (gameObject.GetComponent<HitPoint>().hp <= 0)
         {
             Destroy(gameObject);
@@ -22,4 +30,14 @@ public class Boss : MonoBehaviour {
         }
 	
 	}
+
+    void DamageAround(Vector3 center, float radius, int damage) {
+        Collider[] hitColliders = Physics.OverlapSphere(center, radius);
+        int i = 0;
+        while (i < hitColliders.Length) {
+            hitColliders[i].SendMessage("AddDamage", damage, SendMessageOptions.DontRequireReceiver);
+            i++;
+        }
+    }
+
 }

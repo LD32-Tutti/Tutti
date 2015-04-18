@@ -1063,6 +1063,7 @@ GameObject:
   - 54: {fileID: 1259334374}
   - 195: {fileID: 1259334373}
   - 114: {fileID: 1259334379}
+  - 114: {fileID: 1259334380}
   m_Layer: 0
   m_Name: boss
   m_TagString: Untagged
@@ -1173,6 +1174,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 100
+--- !u!114 &1259334380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1259334372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 174d45d92aa1c0540ae35a7b3df5c3d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackRadius: 10
+  attackDamage: 5
 --- !u!1 &1372106536
 GameObject:
   m_ObjectHideFlags: 0

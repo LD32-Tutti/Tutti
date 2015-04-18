@@ -1,0 +1,22 @@
+#Unity folders
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Uu]nity[Gg]enerated/
+sysinfo.txt
+
+#MonoD
+ExportedObj/
+*.svd
+*.userprefs
+*.csproj
+*.pidb
+*.suo
+*.sln
+*.user
+*.unityproj
+*.booproj
+
+#Sublime
+*.sublime-workspace

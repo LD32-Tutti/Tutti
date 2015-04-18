@@ -7,6 +7,6 @@ public class test_goto : MonoBehaviour {
     
     void Start () {
         NavMeshAgent agent = GetComponent<NavMeshAgent>();
-        agent.destination = goal.position; 
+        agent.destination = goal.position;
     }
 }

@@ -4,6 +4,8 @@ using System.Collections;
 public class Creep : MonoBehaviour {
 
     public GameObject target;
+    public float attackRange;
+    public int attack;
     private NavMeshAgent navAgent;
 
 	// Use this for initialization
@@ -13,8 +15,30 @@ public class Creep : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+        // Target
         if (target != null) {
-            navAgent.destination = target.transform.position;
+
+            float distance = Vector3.Distance(transform.position, target.transform.position);
+
+            // Walk To
+            if (distance > attackRange)
+            {
+                navAgent.destination = target.transform.position;
+            }
+            // Attack
+            else
+            {
+                navAgent.Stop();
+                target.GetComponent<HitPoint>().hp -= attack;
+            }
+            
+        }
+
+        // Death
+        if (gameObject.GetComponent<HitPoint>().hp <= 0)
+        {
+            Destroy(gameObject);
         }
 	}
 }

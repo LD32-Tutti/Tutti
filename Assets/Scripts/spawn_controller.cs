@@ -11,7 +11,7 @@ public class spawn_controller: MonoBehaviour {
         NOTHING
     }
 
-    private Button buttonWalls, buttonTraps;
+    private Button buttonWalls, buttonTraps, buttonCancel;
     private BuildMode buildMode;
     private GameObject tmpWall, tmpTrap;
     private Vector3 outOfScreenPosition = new Vector3(-999, -999, -999);
@@ -30,6 +30,9 @@ public class spawn_controller: MonoBehaviour {
                     break;
                 case "ButtonTraps":
                     buttonTraps = button;
+                    break;
+                case "ButtonCancel":
+                    buttonCancel = button;
                     break;
                 default:
                     Debug.LogError("Found unkonwn UI button: " + button.name);
@@ -50,15 +53,24 @@ public class spawn_controller: MonoBehaviour {
     {
         buildMode = BuildMode.NOTHING;
         buttonWalls.onClick.AddListener(()=>{
-            buildMode = BuildMode.WALLS;           
+            setModeBuildWalls();           
         });
         buttonTraps.onClick.AddListener(()=>{
-            buildMode = BuildMode.TRAPS;           
+            setModeBuildTraps();           
+        });
+        buttonCancel.onClick.AddListener(()=>{
+            setModeNoBuild();           
         });
     }
 
     void Update()
     {
+
+        // Exit Build mode with mouse's right button
+        if(Input.GetMouseButtonDown(1)){
+            setModeNoBuild();
+        }
+
         // Build walls
         if (buildMode == BuildMode.WALLS)
         {
@@ -76,7 +88,7 @@ public class spawn_controller: MonoBehaviour {
                 if(Input.GetMouseButtonDown(0)){
                     BuildWall(cursorPosition);
                 }
-            }     
+            } 
             
         }
         // Build traps
@@ -132,6 +144,25 @@ public class spawn_controller: MonoBehaviour {
         }
 
         return cursorPosition;
+    }
+
+    void setModeBuildWalls()
+    {
+        tmpTrap.transform.position = outOfScreenPosition;
+        buildMode = BuildMode.WALLS;
+    }
+
+    void setModeBuildTraps()
+    {
+        tmpWall.transform.position = outOfScreenPosition;
+        buildMode = BuildMode.TRAPS;
+    }
+
+    void setModeNoBuild()
+    {
+        tmpWall.transform.position = outOfScreenPosition;
+        tmpTrap.transform.position = outOfScreenPosition;
+        buildMode = BuildMode.NOTHING;
     }
 
 

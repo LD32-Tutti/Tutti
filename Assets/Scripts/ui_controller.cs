@@ -24,6 +24,7 @@ public class ui_controller: MonoBehaviour {
     public float deltaRotation = 45.0f;
     public int costWall = 5;
     public int costTrap = 2;
+    public Material materialOk, materialNoOk;
 
     void Awake()
     {
@@ -81,6 +82,7 @@ public class ui_controller: MonoBehaviour {
     void Update()
     {
         enableButtons();
+        setMaterialPlaceholders();
 
         // Exit Build mode with mouse's right button
         if(Input.GetMouseButtonDown(1)){
@@ -236,6 +238,12 @@ public class ui_controller: MonoBehaviour {
         // Are we already in action mode or building mode ?
         buttonCancel.interactable = (buildMode != BuildMode.NOTHING);
 
+    }
+
+    void setMaterialPlaceholders()
+    {
+        tmpWall.GetComponent<Renderer>().material = (goldPoints < costWall ? materialNoOk : materialOk) ;
+        tmpTrap.GetComponent<Renderer>().material = (goldPoints < costTrap ? materialNoOk : materialOk) ;
     }
 
 

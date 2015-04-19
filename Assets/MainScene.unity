@@ -2422,3 +2422,5 @@ MonoBehaviour:
   deltaRotation: 45
   costWall: 5
   costTrap: 2
+  materialOk: {fileID: 2100000, guid: f0582e01697768444bb0629732e167a5, type: 2}
+  materialNoOk: {fileID: 2100000, guid: fecb629ec4589cc40a6af9a16c1975b4, type: 2}

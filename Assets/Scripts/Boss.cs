@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System;
 using System.Collections;
 
@@ -8,18 +9,20 @@ public class Boss : MonoBehaviour {
     public int attackDamage;
     private NavMeshAgent navAgent;
     private Rigidbody rigidBody;
+    private HitPoint hitPoints;
 
 	// Use this for initialization
 	void Awake () {
         navAgent = GetComponent<NavMeshAgent>();
 	    rigidBody = GetComponent<Rigidbody>();
+        hitPoints = gameObject.GetComponent<HitPoint>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
         // Death
-        if (gameObject.GetComponent<HitPoint>().hp <= 0)
+        if (hitPoints.hp <= 0)
         {
             Destroy(gameObject);
             //TODO : End of Game

@@ -67,7 +67,7 @@ public class Boss : MonoBehaviour {
                 case KeyCode.Space:
                     Debug.Log(Math.Abs(transform.position.y-2f).ToString());
                     if (Math.Abs(transform.position.y - 2f) < 0.1) {//origin at +2.0 from floor
-                        rigidBody.AddForce(new Vector3(0.0f, 300.0f, 0.0f), ForceMode.Impulse);
+                        rigidBody.AddForce(new Vector3(0.0f, 200.0f, 0.0f), ForceMode.Impulse);
                         scaleTarget = scaleBase*0.7f;
                         StartCoroutine(Fall());
                     }
@@ -77,7 +77,7 @@ public class Boss : MonoBehaviour {
     }
     IEnumerator Fall() {
         yield return new WaitForSeconds (0.4f);
-        rigidBody.AddForce(new Vector3(0.0f, -1000.0f, 0.0f), ForceMode.Impulse);
+        rigidBody.AddForce(new Vector3(0.0f, -700.0f, 0.0f), ForceMode.Impulse);
 
         //Visuals
         yield return new WaitForSeconds (0.1f);

@@ -153,7 +153,7 @@ public class ui_controller: MonoBehaviour {
             GameObject wall = (GameObject) Instantiate(Resources.Load("Wall"));
             wall.transform.position = new Vector3 (
                 position.x,
-                0.09999914f,
+                5f,
                 position.z
             );
             wall.transform.rotation = Quaternion.Euler(
@@ -173,7 +173,7 @@ public class ui_controller: MonoBehaviour {
             GameObject trap = (GameObject) Instantiate(Resources.Load("trap"));
 		    trap.transform.position = new Vector3 (
                 position.x,
-                0.09999914f,
+                0.1f,
                 position.z
             );
             trap.transform.rotation = Quaternion.Euler(

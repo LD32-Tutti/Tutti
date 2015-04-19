@@ -22,6 +22,8 @@ public class ui_controller: MonoBehaviour {
     public string planeTag = "Floor";
     public float maxDistanceHit = 250.0f;
     public float deltaRotation = 45.0f;
+    public int costWall = 5;
+    public int costTrap = 2;
 
     void Awake()
     {
@@ -71,6 +73,7 @@ public class ui_controller: MonoBehaviour {
 
     void Update()
     {
+        enableButtons();
 
         // Exit Build mode with mouse's right button
         if(Input.GetMouseButtonDown(1)){
@@ -138,32 +141,41 @@ public class ui_controller: MonoBehaviour {
 
     void BuildWall(Vector3 position, float rotation)
     {
-        GameObject wall = (GameObject) Instantiate(Resources.Load("Wall"));
-        wall.transform.position = new Vector3 (
-            position.x,
-            0.09999914f,
-            position.z
-        );
-        wall.transform.rotation = Quaternion.Euler(
-                wall.transform.rotation.eulerAngles.x,
-                rotation,
-                wall.transform.rotation.eulerAngles.z
-        );
+        if (goldPoints >= costWall)
+        {
+            GameObject wall = (GameObject) Instantiate(Resources.Load("Wall"));
+            wall.transform.position = new Vector3 (
+                position.x,
+                0.09999914f,
+                position.z
+            );
+            wall.transform.rotation = Quaternion.Euler(
+                    wall.transform.rotation.eulerAngles.x,
+                    rotation,
+                    wall.transform.rotation.eulerAngles.z
+            );
+            addGold(-costWall);
+        }
+        
     }
 
     void BuildTrap(Vector3 position, float rotation)
     {
-        GameObject trap = (GameObject) Instantiate(Resources.Load("trap"));
-		trap.transform.position = new Vector3 (
-            position.x,
-            0.09999914f,
-            position.z
-        );
-        trap.transform.rotation = Quaternion.Euler(
-                trap.transform.rotation.eulerAngles.x,
-                rotation,
-                trap.transform.rotation.eulerAngles.z
-        );
+        if (goldPoints >= costTrap)
+        {
+            GameObject trap = (GameObject) Instantiate(Resources.Load("trap"));
+		    trap.transform.position = new Vector3 (
+                position.x,
+                0.09999914f,
+                position.z
+            );
+            trap.transform.rotation = Quaternion.Euler(
+                    trap.transform.rotation.eulerAngles.x,
+                    rotation,
+                    trap.transform.rotation.eulerAngles.z
+            );
+            addGold(-costTrap);
+        }
     }
 
     Vector3 GetCursorPosition()
@@ -204,6 +216,38 @@ public class ui_controller: MonoBehaviour {
     {
         goldPoints += amount;
         goldPointsText.text = goldPoints + " " + (goldPoints <= 1 ?  "Gold" : "Golds");
+    }
+
+    void enableButtons()
+    {
+        // Do you have enough gold to set traps ?
+        if (goldPoints >= costTrap)
+        {
+            buttonTraps.enabled = true;
+        }
+        else 
+        {
+            buttonTraps.enabled = false;
+        }
+
+        // Do you have enough gold to set walls ?
+        if (goldPoints >= costWall)
+        {
+            buttonWalls.enabled = true;
+        }
+        else 
+        {
+            buttonWalls.enabled = false;
+        }
+
+        if (buildMode != BuildMode.NOTHING)
+        {
+            buttonWalls.enabled = true;
+        }
+        else 
+        {
+            buttonWalls.enabled = false;
+        }
     }
 
 

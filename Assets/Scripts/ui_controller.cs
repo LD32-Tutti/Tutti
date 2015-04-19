@@ -11,19 +11,21 @@ public class ui_controller: MonoBehaviour {
         NOTHING
     }
 
-    private Button buttonWalls, buttonTraps, buttonCancel;
+    private Button buttonWalls, buttonTraps, buttonCancel, buttonGoblin;
     private Text goldPointsText;
     private BuildMode buildMode;
     private GameObject tmpWall, tmpTrap;
     private float yRotation = 0.0f;
     private Vector3 outOfScreenPosition = new Vector3(-999, -999, -999);
     private int goldPoints = 0;
+    private Transform friendCreepSpawner;
 
     public string planeTag = "Floor";
     public float maxDistanceHit = 250.0f;
     public float deltaRotation = 45.0f;
     public int costWall = 5;
     public int costTrap = 2;
+    public int costGoblins = 10;
     public Material materialOk, materialNoOk;
 
     void Awake()
@@ -40,6 +42,9 @@ public class ui_controller: MonoBehaviour {
                     break;
                 case "ButtonCancel":
                     buttonCancel = button;
+                    break;
+                case "ButtonGoblin":
+                    buttonGoblin = button;
                     break;
                 default:
                     Debug.LogError("Found unkonwn UI button: " + button.name);
@@ -63,6 +68,8 @@ public class ui_controller: MonoBehaviour {
         tmpTrap = (GameObject) Instantiate(Resources.Load("TmpTrap"));
         tmpTrap.layer = 2; //Ignore Raycast
         tmpTrap.transform.position = outOfScreenPosition;
+
+        friendCreepSpawner = GameObject.Find("friend_creep_spawner").gameObject.transform;
     }
 
     void Start()
@@ -76,6 +83,10 @@ public class ui_controller: MonoBehaviour {
         });
         buttonCancel.onClick.AddListener(()=>{
             setModeNoBuild();           
+        });
+        buttonGoblin.onClick.AddListener(()=>{
+            Instantiate(Resources.Load("creep_friend"), friendCreepSpawner.position, friendCreepSpawner.rotation);
+            addGold(-costGoblins);
         });
     }
 
@@ -237,6 +248,9 @@ public class ui_controller: MonoBehaviour {
 
         // Are we already in action mode or building mode ?
         buttonCancel.interactable = (buildMode != BuildMode.NOTHING);
+
+        
+        buttonGoblin.interactable = (goldPoints >= costGoblins);
 
     }
 

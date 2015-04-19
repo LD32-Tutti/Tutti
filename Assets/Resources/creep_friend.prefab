@@ -222,7 +222,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae6ea8f165a707644b5f7061d3149d21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 30
+  hp: 20
   maxhp: 0
 --- !u!114 &11405270
 MonoBehaviour:
@@ -315,7 +315,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackRange: 5
-  attack: 10
+  attack: 7
 --- !u!114 &11471150
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -398,8 +398,8 @@ NavMeshAgent:
   m_GameObject: {fileID: 146136}
   m_Enabled: 1
   m_Radius: .500000119
-  m_Speed: 3.5
-  m_Acceleration: 8
+  m_Speed: 4
+  m_Acceleration: 10
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 0

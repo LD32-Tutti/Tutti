@@ -12,7 +12,7 @@ public class CreepSpawner : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        InvokeRepeating("TrySpawn", 0.0f, 1.0f);
+        //InvokeRepeating("TrySpawn", 0.0f, 1.0f);
 	}
 
     private void TrySpawn() {

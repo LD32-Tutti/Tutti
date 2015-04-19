@@ -11,7 +11,7 @@ public class ui_controller: MonoBehaviour {
         NOTHING
     }
 
-    private Button buttonWalls, buttonTraps, buttonCancel, buttonGoblin;
+    private Button buttonWalls, buttonTraps, buttonCancel, buttonGoblin, buttonNextLvl;
     private Text goldPointsText;
     private BuildMode buildMode;
     private GameObject tmpWall, tmpTrap;
@@ -19,6 +19,7 @@ public class ui_controller: MonoBehaviour {
     private Vector3 outOfScreenPosition = new Vector3(-999, -999, -999);
     private int goldPoints = 0;
     private Transform friendCreepSpawner;
+    private LevelController levelCtrl;
 
     public string planeTag = "Floor";
     public float maxDistanceHit = 250.0f;
@@ -46,6 +47,9 @@ public class ui_controller: MonoBehaviour {
                 case "ButtonGoblin":
                     buttonGoblin = button;
                     break;
+                case "ButtonNextLvl":
+                    buttonNextLvl = button;
+                    break;
                 default:
                     Debug.LogError("Found unkonwn UI button: " + button.name);
                     break;
@@ -70,6 +74,7 @@ public class ui_controller: MonoBehaviour {
         tmpTrap.transform.position = outOfScreenPosition;
 
         friendCreepSpawner = GameObject.Find("friend_creep_spawner").gameObject.transform;
+        levelCtrl = GameObject.FindObjectOfType<LevelController>();
     }
 
     void Start()
@@ -87,6 +92,10 @@ public class ui_controller: MonoBehaviour {
         buttonGoblin.onClick.AddListener(()=>{
             Instantiate(Resources.Load("creep_friend"), friendCreepSpawner.position, friendCreepSpawner.rotation);
             addGold(-costGoblins);
+        });
+        buttonNextLvl.onClick.AddListener(()=>{
+            levelCtrl.level += 1;
+            StartCoroutine(levelCtrl.SpawnLevel());
         });
     }
 
@@ -251,6 +260,7 @@ public class ui_controller: MonoBehaviour {
 
         
         buttonGoblin.interactable = (goldPoints >= costGoblins);
+        buttonNextLvl.interactable = !levelCtrl.inLevel;
 
     }
 

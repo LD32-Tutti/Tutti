@@ -2219,7 +2219,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!23 &1259334375
 MeshRenderer:
@@ -2231,7 +2231,8 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 45d25f2e205672d4b9880e4bb4cb942c, type: 2}
+  - {fileID: 2100000, guid: bd28852786a2a2a47bc05e7d2bc6d9a9, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -2254,26 +2255,26 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: .5
-  m_Height: 2
+  m_Radius: .596477091
+  m_Height: 3.03255248
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: .119999997, z: 0}
 --- !u!33 &1259334377
 MeshFilter:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1259334372}
-  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 4300000, guid: 4ee4453ea87d60c48ad2fc2530c3f642, type: 3}
 --- !u!4 &1259334378
 Transform:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1259334372}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 2, z: 17.8400002}
-  m_LocalScale: {x: 4, y: 2.00000119, z: 4.00000238}
+  m_LocalRotation: {x: -1.20083541e-07, y: -.954188228, z: -.299207062, w: 3.82953203e-07}
+  m_LocalPosition: {x: 0, y: 2.49000001, z: 17}
+  m_LocalScale: {x: 2, y: 1.99999845, z: 1.99999845}
   m_Children:
   - {fileID: 1304219492}
   m_Father: {fileID: 0}
@@ -2327,7 +2328,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1304219491}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: .5, z: 0}
+  m_LocalPosition: {x: .0900000036, y: .370000005, z: .219999999}
   m_LocalScale: {x: .75, y: .0499999709, z: .749999523}
   m_Children: []
   m_Father: {fileID: 1259334378}

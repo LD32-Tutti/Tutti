@@ -52,24 +52,31 @@ public class Boss : MonoBehaviour {
         }
 
         if (Input.GetKeyDown("space")) {
-            if (Math.Abs(transform.position.y - 2f) < 0.2) {//origin at +2.0 from floor
+            if (Math.Abs(transform.position.y - 2.5f) < 0.2) {//origin at +2.0 from floor
                 rigidBody.AddForce(new Vector3(0.0f, 200.0f, 0.0f), ForceMode.Impulse);
-                scaleTarget = scaleBase*1.3f;
+                //scaleTarget = scaleBase*1.5f;
                 StartCoroutine(Fall());
             }
         }
 
-        transform.localScale = Vector3.Lerp(transform.localScale, scaleTarget, 10f*Time.deltaTime);
+        //transform.localScale = Vector3.Lerp(transform.localScale, scaleTarget, 10f*Time.deltaTime);
+        transform.localScale = (float)(1+0.1*(transform.position.y-2.5))*scaleBase;
 	
 	}
 
     void DamageAround(Vector3 center, float radius, int damage) {
         Collider[] hitColliders = Physics.OverlapSphere(center, radius);
         int i = 0;
+        
         while (i < hitColliders.Length) {
-            hitColliders[i].SendMessage("AddDamage", damage, SendMessageOptions.DontRequireReceiver);
+            var distance = Math.Sqrt((hitColliders[i].transform.position - transform.position).sqrMagnitude);
+            StartCoroutine(DamageAroundSignalEvent((float)(distance*0.03), hitColliders[i], damage));
             i++;
         }
+    }
+    IEnumerator DamageAroundSignalEvent(float delay, Collider source, int damage) {
+        yield return new WaitForSeconds (delay);
+        source.SendMessage("AddDamage", damage, SendMessageOptions.DontRequireReceiver);
     }
 
     IEnumerator Fall() {

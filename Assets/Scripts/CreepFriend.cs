@@ -55,7 +55,6 @@ public class CreepFriend : MonoBehaviour {
 
     Creep FindClosestCreep() {
         Creep closest = null;
-        float distClosest;
 
         var creeps = GameObject.FindObjectsOfType<Creep>();
         var dist = Mathf.Infinity;
@@ -64,7 +63,7 @@ public class CreepFriend : MonoBehaviour {
             float curDistance = diff.sqrMagnitude;
             if (curDistance < dist) {
                 closest = creep;
-                distClosest = curDistance;
+                dist = curDistance;
             }
         }
         return closest;

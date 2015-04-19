@@ -7,7 +7,6 @@ public class Boss : MonoBehaviour {
 
     public float attackRadius;
     public int attackDamage;
-    private NavMeshAgent navAgent;
     private Rigidbody rigidBody;
     private HitPoint hitPoints;
     private GameObject uiGameOver;
@@ -16,7 +15,6 @@ public class Boss : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
-        navAgent = GetComponent<NavMeshAgent>();
 	    rigidBody = GetComponent<Rigidbody>();
         hitPoints = gameObject.GetComponent<HitPoint>();
         scaleBase = transform.localScale;

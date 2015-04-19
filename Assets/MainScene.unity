@@ -1936,3 +1936,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   planeTag: Floor
   maxDistanceHit: 250
+  deltaRotation: 45

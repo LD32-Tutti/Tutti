@@ -14,10 +14,12 @@ public class spawn_controller: MonoBehaviour {
     private Button buttonWalls, buttonTraps, buttonCancel;
     private BuildMode buildMode;
     private GameObject tmpWall, tmpTrap;
+    private float yRotation = 0.0f;
     private Vector3 outOfScreenPosition = new Vector3(-999, -999, -999);
 
     public string planeTag = "Floor";
     public float maxDistanceHit = 250.0f;
+    public float deltaRotation = 45.0f;
 
     void Awake()
     {
@@ -71,6 +73,14 @@ public class spawn_controller: MonoBehaviour {
             setModeNoBuild();
         }
 
+        float deltaScroll = Input.GetAxis("Mouse ScrollWheel");
+        if(deltaScroll > 0.0f){
+            yRotation += deltaRotation;
+        }
+        else if(deltaScroll < 0.0f) {
+            yRotation -= deltaRotation;
+        }
+
         // Build walls
         if (buildMode == BuildMode.WALLS)
         {
@@ -81,12 +91,17 @@ public class spawn_controller: MonoBehaviour {
                 1.0f,
                 cursorPosition.z
             );
+            tmpWall.transform.rotation = Quaternion.Euler(
+                tmpWall.transform.rotation.eulerAngles.x,
+                yRotation,
+                tmpWall.transform.rotation.eulerAngles.z
+            );
 
 
             if ( !cursorPosition.Equals(outOfScreenPosition) )
             {
                 if(Input.GetMouseButtonDown(0)){
-                    BuildWall(cursorPosition);
+                    BuildWall(cursorPosition, yRotation);
                 }
             } 
             
@@ -102,16 +117,22 @@ public class spawn_controller: MonoBehaviour {
                 cursorPosition.z
             );
 
+            tmpTrap.transform.rotation = Quaternion.Euler(
+                tmpTrap.transform.rotation.eulerAngles.x,
+                yRotation,
+                tmpTrap.transform.rotation.eulerAngles.z
+            );
+
             if ( !cursorPosition.Equals(outOfScreenPosition) )
             {
                 if(Input.GetMouseButtonDown(0)){
-                    BuildTrap(cursorPosition);
+                    BuildTrap(cursorPosition, yRotation);
                 }
             }
         }
     }
 
-    void BuildWall(Vector3 position)
+    void BuildWall(Vector3 position, float rotation)
     {
         GameObject wall = (GameObject) Instantiate(Resources.Load("Wall"));
         wall.transform.position = new Vector3 (
@@ -119,15 +140,25 @@ public class spawn_controller: MonoBehaviour {
             0.09999914f,
             position.z
         );
+        wall.transform.rotation = Quaternion.Euler(
+                wall.transform.rotation.eulerAngles.x,
+                rotation,
+                wall.transform.rotation.eulerAngles.z
+        );
     }
 
-    void BuildTrap(Vector3 position)
+    void BuildTrap(Vector3 position, float rotation)
     {
         GameObject trap = (GameObject) Instantiate(Resources.Load("trap"));
 		trap.transform.position = new Vector3 (
             position.x,
             0.09999914f,
             position.z
+        );
+        trap.transform.rotation = Quaternion.Euler(
+                trap.transform.rotation.eulerAngles.x,
+                rotation,
+                trap.transform.rotation.eulerAngles.z
         );
     }
 

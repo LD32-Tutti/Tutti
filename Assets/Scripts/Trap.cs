@@ -7,6 +7,7 @@ public class Trap : MonoBehaviour {
     public int damages = 1;
 
 	private Color clrBase;
+    private bool active = true;
 
 	void Awake () {
 	    clrBase = GetComponent<Renderer>().material.color;
@@ -15,14 +16,19 @@ public class Trap : MonoBehaviour {
 
 
 	void OnMouseDown() {
-        foreach (GameObject o in objectsInside) {
-            if (o != null)
-            {
-                HitPoint hp = o.GetComponent<HitPoint>();
-                if (hp != null)
+        if (active) {
+            foreach (GameObject o in objectsInside) {
+                if (o != null)
                 {
-                    hp.hp -= damages;
+                    HitPoint hp = o.GetComponent<HitPoint>();
+                    if (hp != null)
+                    {
+                        hp.hp -= damages;
+                    }
                 }
+                active = false;
+                GetComponent<Renderer>().material.color = new Color(0.0F, 0.0F, 0.0F);
+                Invoke("Rearm", 5f);
             }
         }
 	}
@@ -36,10 +42,21 @@ public class Trap : MonoBehaviour {
     }
 
 	void OnMouseEnter() {
-        GetComponent<Renderer>().material.color = new Color(1.0F, 0.87F, 0.75F);
+        if(active)
+            GetComponent<Renderer>().material.color = new Color(1.0F, 0.87F, 0.75F);
+        else
+            GetComponent<Renderer>().material.color = new Color(0.1F, 0.1F, 0.1F);
 	}
 
 	void OnMouseExit() {
-        GetComponent<Renderer>().material.color = clrBase;
+        if(active)
+            GetComponent<Renderer>().material.color = clrBase;
+        else
+            GetComponent<Renderer>().material.color = new Color(0.0F, 0.0F, 0.0F);
 	}
+
+    void Rearm() {
+        active = true;
+        GetComponent<Renderer>().material.color = clrBase;
+    }
 }

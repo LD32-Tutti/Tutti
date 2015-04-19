@@ -22,9 +22,9 @@ public class LevelController : MonoBehaviour {
     }
 
 
-    IEnumerator Spawn(int qty) {
+    IEnumerator Spawn(int qty, float hp, int attack) {
         for (int i = 0; i < qty; i++) {
-            creepSpawners[Random.Range(0, 3)].SpawnOnce();
+            creepSpawners[Random.Range(0, 3)].SpawnOnce(hp, attack);
             yield return new WaitForSeconds (0.2f);
         }
     }
@@ -32,41 +32,17 @@ public class LevelController : MonoBehaviour {
     public IEnumerator SpawnLevel() {
         levelText.text = "Level "+level.ToString();
         inLevel = true;
-        switch (level) {
-            case 1:
-                StartCoroutine(Spawn(6));
-                yield return new WaitForSeconds (10f);
-                StartCoroutine(Spawn(10));
-                yield return new WaitForSeconds (10f);
-                StartCoroutine(Spawn(20));
-                yield return new WaitForSeconds (10f);
-                StartCoroutine(Spawn(10));
-                yield return new WaitForSeconds (10f);
-                StartCoroutine(Spawn(30));
-                break;
-            case 2:
-                StartCoroutine(Spawn(50));
-                yield return new WaitForSeconds (10f);
-                StartCoroutine(Spawn(100));
-                yield return new WaitForSeconds (10f);
-                StartCoroutine(Spawn(200));
-                yield return new WaitForSeconds (10f);
-                StartCoroutine(Spawn(200));
-                yield return new WaitForSeconds (10f);
-                StartCoroutine(Spawn(500));
-                break;
-            default:
-                StartCoroutine(Spawn(500));
-                yield return new WaitForSeconds (10f);
-                StartCoroutine(Spawn(600));
-                yield return new WaitForSeconds (10f);
-                StartCoroutine(Spawn(1000));
-                yield return new WaitForSeconds (10f);
-                StartCoroutine(Spawn(500));
-                yield return new WaitForSeconds (10f);
-                StartCoroutine(Spawn(5000));
-                break;
+
+        for (int i = 0; i < level + 2; i++) {
+            Debug.Log("Spawn: "+((int)((level*2+4)*i/4f)).ToString());
+            StartCoroutine(Spawn(
+                (int)((level*2+4)*(1+i/4f)),//Number
+                (float)(level+2)*(level+2)*0.5f,//Hit points
+                (int)(Mathf.Sqrt(level*10+90)*2)//Attack
+            ));
+            yield return new WaitForSeconds (8f);
         }
+
         inLevel = false;
     }
 }

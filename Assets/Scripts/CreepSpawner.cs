@@ -17,12 +17,16 @@ public class CreepSpawner : MonoBehaviour {
 
     private void TrySpawn() {
         if (Random.Range(0, 4) == 0){
-            SpawnOnce();
+            SpawnOnce(10f, 30);
         }
     }
 
-    public void SpawnOnce () {
+    public void SpawnOnce (float hp, int attack) {
         GameObject creep = (GameObject)Instantiate(creepRes, transform.position, transform.rotation);
-        creep.GetComponentInChildren<Creep>().target = target;
+        var c = creep.GetComponentInChildren<Creep>();
+        c.target = target;
+        c.attack = attack;
+        creep.GetComponentInChildren<HitPoint>().hp = hp;
+
     }
 }

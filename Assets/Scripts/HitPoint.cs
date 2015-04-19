@@ -2,8 +2,8 @@
 using System.Collections;
 
 public class HitPoint : MonoBehaviour {
-    public int hp;
-    public int maxhp;
+    public float hp;
+    public float maxhp;
 
     void Awake(){
         maxhp = hp;

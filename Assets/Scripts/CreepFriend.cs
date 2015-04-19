@@ -1,18 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Creep : MonoBehaviour {
+public class CreepFriend : MonoBehaviour {
 
-    public GameObject target;
+    private GameObject target;
     public float attackRange;
     public int attack;
     private NavMeshAgent navAgent;
-    private ui_controller ui;
 
 	// Use this for initialization
 	protected void Awake () {
 	    navAgent = GetComponent<NavMeshAgent>();
-        ui = GameObject.Find("Canvas").GetComponent<ui_controller>();
+        InvokeRepeating("AttackNearest", 0f, 1f);
 	}
 	
 	// Update is called once per frame
@@ -42,12 +41,32 @@ public class Creep : MonoBehaviour {
         if (gameObject.GetComponent<HitPoint>().hp <= 0)
         {
             Destroy(gameObject);
-            ui.addGold(1);
         }
 	}
 
     void AddDamage(int damage)
     {
         gameObject.GetComponent<HitPoint>().hp -= damage;
+    }
+
+        void AttackNearest(){
+        target = (GameObject)FindClosestCreep().gameObject;
+    }
+
+    Creep FindClosestCreep() {
+        Creep closest = null;
+        float distClosest;
+
+        var creeps = GameObject.FindObjectsOfType<Creep>();
+        var dist = Mathf.Infinity;
+        foreach (Creep creep in creeps) {
+            Vector3 diff = creep.transform.position - transform.position;
+            float curDistance = diff.sqrMagnitude;
+            if (curDistance < dist) {
+                closest = creep;
+                distClosest = curDistance;
+            }
+        }
+        return closest;
     }
 }

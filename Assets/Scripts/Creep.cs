@@ -26,6 +26,8 @@ public class Creep : MonoBehaviour {
             // Walk To
             if (distance > attackRange)
             {
+                if(!navAgent.enabled)
+                    navAgent.Resume();
                 navAgent.destination = target.transform.position;
             }
             // Attack

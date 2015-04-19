@@ -22,8 +22,7 @@ public class CreepSpawner : MonoBehaviour {
     }
 
     public void SpawnOnce () {
-        GameObject creep = (GameObject)Instantiate(creepRes);
-        creep.transform.position = transform.position;
+        GameObject creep = (GameObject)Instantiate(creepRes, transform.position, transform.rotation);
         creep.GetComponentInChildren<Creep>().target = target;
     }
 }

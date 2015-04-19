@@ -424,7 +424,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 310274170}
   - 33: {fileID: 310274169}
-  - 65: {fileID: 310274168}
   - 23: {fileID: 310274167}
   - 114: {fileID: 310274171}
   m_Layer: 0
@@ -458,18 +457,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!65 &310274168
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 310274166}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &310274169
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -509,7 +496,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 484122133}
   - 33: {fileID: 484122132}
-  - 65: {fileID: 484122131}
   - 23: {fileID: 484122130}
   - 114: {fileID: 484122134}
   m_Layer: 0
@@ -543,18 +529,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!65 &484122131
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 484122129}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &484122132
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -892,7 +866,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 901725136}
   - 33: {fileID: 901725135}
-  - 65: {fileID: 901725134}
   - 23: {fileID: 901725133}
   - 114: {fileID: 901725137}
   m_Layer: 0
@@ -926,18 +899,6 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!65 &901725134
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 901725132}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &901725135
 MeshFilter:
   m_ObjectHideFlags: 0

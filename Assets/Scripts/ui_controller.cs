@@ -46,7 +46,14 @@ public class ui_controller: MonoBehaviour {
             }
         }
 
-        goldPointsText = FindObjectOfType<Text>();
+        Text[] texts = FindObjectsOfType<Text>();
+        foreach(Text text in texts){
+            if (text.name == "GoldText")
+            {
+                goldPointsText = text;
+                break;
+            }
+        }
 
         tmpWall = (GameObject) Instantiate(Resources.Load("TmpWall"));
         tmpWall.layer = 2; //Ignore Raycast

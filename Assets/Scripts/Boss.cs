@@ -40,7 +40,7 @@ public class Boss : MonoBehaviour {
 
         //Boss control
         const float speed = 10.0f;
-        if (Input.GetKey("z")) {
+        if (Input.GetKey("z") || Input.GetKey("w")) {
             transform.position += new Vector3(0.0f, 0.0f, speed*Time.deltaTime);
         }
         if(Input.GetKey("s")) {
@@ -49,7 +49,7 @@ public class Boss : MonoBehaviour {
         if(Input.GetKey("d")) {
             transform.position += new Vector3(speed*Time.deltaTime, 0.0f, 0.0f);
         }
-        if(Input.GetKey("q")) {
+        if(Input.GetKey("q") || Input.GetKey("a")) {
             transform.position += new Vector3(-speed*Time.deltaTime, 0.0f, 0.0f);
         }
 

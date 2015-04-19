@@ -4,7 +4,10 @@ using System.Collections.Generic;
 
 public class Trap : MonoBehaviour {
 
+    public int damages = 1;
+
 	private Color clrBase;
+
 	void Awake () {
 	    clrBase = GetComponent<Renderer>().material.color;
         objectsInside = new List<GameObject>();
@@ -13,7 +16,14 @@ public class Trap : MonoBehaviour {
 
 	void OnMouseDown() {
         foreach (GameObject o in objectsInside) {
-            Destroy(o);
+            if (o != null)
+            {
+                HitPoint hp = o.GetComponent<HitPoint>();
+                if (hp != null)
+                {
+                    hp.hp -= damages;
+                }
+            }
         }
 	}
     

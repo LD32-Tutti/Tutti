@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class spawn_controller: MonoBehaviour {
+public class ui_controller: MonoBehaviour {
 
     enum BuildMode
     {
@@ -12,10 +12,12 @@ public class spawn_controller: MonoBehaviour {
     }
 
     private Button buttonWalls, buttonTraps, buttonCancel;
+    private Text goldPointsText;
     private BuildMode buildMode;
     private GameObject tmpWall, tmpTrap;
     private float yRotation = 0.0f;
     private Vector3 outOfScreenPosition = new Vector3(-999, -999, -999);
+    private int goldPoints = 0;
 
     public string planeTag = "Floor";
     public float maxDistanceHit = 250.0f;
@@ -41,6 +43,8 @@ public class spawn_controller: MonoBehaviour {
                     break;
             }
         }
+
+        goldPointsText = FindObjectOfType<Text>();
 
         tmpWall = (GameObject) Instantiate(Resources.Load("TmpWall"));
         tmpWall.layer = 2; //Ignore Raycast
@@ -194,6 +198,12 @@ public class spawn_controller: MonoBehaviour {
         tmpWall.transform.position = outOfScreenPosition;
         tmpTrap.transform.position = outOfScreenPosition;
         buildMode = BuildMode.NOTHING;
+    }
+
+    public void addGold(int amount)
+    {
+        goldPoints += amount;
+        goldPointsText.text = goldPoints + " " + (goldPoints <= 1 ?  "Gold" : "Golds");
     }
 
 

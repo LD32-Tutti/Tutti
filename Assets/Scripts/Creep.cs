@@ -7,10 +7,12 @@ public class Creep : MonoBehaviour {
     public float attackRange;
     public int attack;
     private NavMeshAgent navAgent;
+    private ui_controller ui;
 
 	// Use this for initialization
 	void Awake () {
 	    navAgent = GetComponent<NavMeshAgent>();
+        ui = GameObject.Find("Canvas").GetComponent<ui_controller>();
 	}
 	
 	// Update is called once per frame
@@ -39,6 +41,7 @@ public class Creep : MonoBehaviour {
         if (gameObject.GetComponent<HitPoint>().hp <= 0)
         {
             Destroy(gameObject);
+            ui.addGold(1);
         }
 	}
 

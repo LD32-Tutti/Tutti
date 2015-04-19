@@ -11,11 +11,15 @@ public class Boss : MonoBehaviour {
     private Rigidbody rigidBody;
     private HitPoint hitPoints;
 
+    Vector3 scaleBase, scaleTarget;
+
 	// Use this for initialization
 	void Awake () {
         navAgent = GetComponent<NavMeshAgent>();
 	    rigidBody = GetComponent<Rigidbody>();
         hitPoints = gameObject.GetComponent<HitPoint>();
+        scaleBase = transform.localScale;
+        scaleTarget = scaleBase;
 	}
 	
 	// Update is called once per frame
@@ -42,6 +46,8 @@ public class Boss : MonoBehaviour {
         if(Input.GetKey("q")) {
             transform.position += new Vector3(-speed*Time.deltaTime, 0.0f, 0.0f);
         }
+
+        transform.localScale = Vector3.Lerp(transform.localScale, scaleTarget, 10f*Time.deltaTime);
 	
 	}
 
@@ -62,6 +68,7 @@ public class Boss : MonoBehaviour {
                     Debug.Log(Math.Abs(transform.position.y-2f).ToString());
                     if (Math.Abs(transform.position.y - 2f) < 0.1) {//origin at +2.0 from floor
                         rigidBody.AddForce(new Vector3(0.0f, 300.0f, 0.0f), ForceMode.Impulse);
+                        scaleTarget = scaleBase*0.7f;
                         StartCoroutine(Fall());
                     }
                     break;
@@ -79,6 +86,7 @@ public class Boss : MonoBehaviour {
             new Vector3(transform.position.x, 0f, transform.position.z), 
             Quaternion.LookRotation(new Vector3(0f, 1f, 0f))
         );
+        scaleTarget = scaleBase;
 
         //Damage
         Vector3 center = new Vector3(

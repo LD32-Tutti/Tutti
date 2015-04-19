@@ -47,6 +47,14 @@ public class Boss : MonoBehaviour {
             transform.position += new Vector3(-speed*Time.deltaTime, 0.0f, 0.0f);
         }
 
+        if (Input.GetKeyDown("space")) {
+            if (Math.Abs(transform.position.y - 2f) < 0.2) {//origin at +2.0 from floor
+                rigidBody.AddForce(new Vector3(0.0f, 200.0f, 0.0f), ForceMode.Impulse);
+                scaleTarget = scaleBase*1.3f;
+                StartCoroutine(Fall());
+            }
+        }
+
         transform.localScale = Vector3.Lerp(transform.localScale, scaleTarget, 10f*Time.deltaTime);
 	
 	}
@@ -60,21 +68,6 @@ public class Boss : MonoBehaviour {
         }
     }
 
-    void OnGUI() {
-        Event e = Event.current;
-        if (e.isKey && e.type == EventType.KeyDown) {
-            switch (e.keyCode) {
-                case KeyCode.Space:
-                    Debug.Log(Math.Abs(transform.position.y-2f).ToString());
-                    if (Math.Abs(transform.position.y - 2f) < 0.1) {//origin at +2.0 from floor
-                        rigidBody.AddForce(new Vector3(0.0f, 200.0f, 0.0f), ForceMode.Impulse);
-                        scaleTarget = scaleBase*0.7f;
-                        StartCoroutine(Fall());
-                    }
-                    break;
-            }
-        }
-    }
     IEnumerator Fall() {
         yield return new WaitForSeconds (0.4f);
         rigidBody.AddForce(new Vector3(0.0f, -700.0f, 0.0f), ForceMode.Impulse);

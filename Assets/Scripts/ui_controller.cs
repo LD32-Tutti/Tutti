@@ -221,33 +221,14 @@ public class ui_controller: MonoBehaviour {
     void enableButtons()
     {
         // Do you have enough gold to set traps ?
-        if (goldPoints >= costTrap)
-        {
-            buttonTraps.enabled = true;
-        }
-        else 
-        {
-            buttonTraps.enabled = false;
-        }
+        buttonTraps.interactable = (goldPoints >= costTrap);
 
         // Do you have enough gold to set walls ?
-        if (goldPoints >= costWall)
-        {
-            buttonWalls.enabled = true;
-        }
-        else 
-        {
-            buttonWalls.enabled = false;
-        }
+        buttonWalls.interactable = (goldPoints >= costWall);
 
-        if (buildMode != BuildMode.NOTHING)
-        {
-            buttonWalls.enabled = true;
-        }
-        else 
-        {
-            buttonWalls.enabled = false;
-        }
+        // Are we already in action mode or building mode ?
+        buttonCancel.interactable = (buildMode != BuildMode.NOTHING);
+
     }
 
 

@@ -10,6 +10,7 @@ public class Boss : MonoBehaviour {
     private NavMeshAgent navAgent;
     private Rigidbody rigidBody;
     private HitPoint hitPoints;
+    private GameObject uiGameOver;
 
     Vector3 scaleBase, scaleTarget;
 
@@ -20,16 +21,21 @@ public class Boss : MonoBehaviour {
         hitPoints = gameObject.GetComponent<HitPoint>();
         scaleBase = transform.localScale;
         scaleTarget = scaleBase;
+        uiGameOver = GameObject.Find("GameOverCanvas");
 	}
-	
+
+    void Start()
+    {
+        uiGameOver.SetActive(false);
+    }
 	// Update is called once per frame
 	void Update () {
-
+        
         // Death
         if (hitPoints.hp <= 0)
         {
             Destroy(gameObject);
-            //TODO : End of Game
+            uiGameOver.SetActive(true);
         }
 
         //Boss control

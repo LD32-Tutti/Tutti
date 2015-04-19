@@ -10,11 +10,6 @@ public class CreepSpawner : MonoBehaviour {
         if(creepRes == null) creepRes = Resources.Load("creep");
 	}
 
-	// Use this for initialization
-	void Start () {
-        //InvokeRepeating("TrySpawn", 0.0f, 1.0f);
-	}
-
     private void TrySpawn() {
         if (Random.Range(0, 4) == 0){
             SpawnOnce(10f, 30);
@@ -26,7 +21,9 @@ public class CreepSpawner : MonoBehaviour {
         var c = creep.GetComponentInChildren<Creep>();
         c.target = target;
         c.attack = attack;
-        creep.GetComponentInChildren<HitPoint>().hp = hp;
+        var h = creep.GetComponentInChildren<HitPoint>();
+        h.hp = hp;
+        h.maxhp = hp;
 
     }
 }

@@ -17,6 +17,15 @@ public class Trap : MonoBehaviour {
 
 	void OnMouseDown() {
         if (active) {
+            Instantiate(
+                Resources.Load("vfx_trap"),
+                new Vector3(transform.position.x, 3f, transform.position.z), 
+                Quaternion.AngleAxis(90f, new Vector3(1f,0f,0f))
+            );
+            active = false;
+            GetComponent<Renderer>().material.color = new Color(0.0F, 0.0F, 0.0F);
+            Invoke("Rearm", 5f);
+
             foreach (GameObject o in objectsInside) {
                 if (o != null)
                 {
@@ -26,9 +35,6 @@ public class Trap : MonoBehaviour {
                         hp.hp -= damages;
                     }
                 }
-                active = false;
-                GetComponent<Renderer>().material.color = new Color(0.0F, 0.0F, 0.0F);
-                Invoke("Rearm", 5f);
             }
         }
 	}

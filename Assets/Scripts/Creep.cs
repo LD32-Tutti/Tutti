@@ -41,6 +41,7 @@ public class Creep : MonoBehaviour {
         // Death
         if (gameObject.GetComponent<HitPoint>().hp <= 0)
         {
+            Instantiate(Resources.Load("vfx_creep_death"), transform.position, Quaternion.AngleAxis(90f, new Vector3(1f,0f,0f)));
             Destroy(gameObject);
             ui.addGold(1);
         }

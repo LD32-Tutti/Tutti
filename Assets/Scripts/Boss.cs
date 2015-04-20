@@ -85,7 +85,7 @@ public class Boss : MonoBehaviour {
         var vfx = Instantiate(
             Resources.Load("vfx_stomp"), 
             new Vector3(transform.position.x, 0f, transform.position.z), 
-            Quaternion.LookRotation(new Vector3(0f, 1f, 0f))
+            Quaternion.AngleAxis(90f, new Vector3(1f,0f,0f))
         );
 
         //Damage

@@ -24,7 +24,8 @@ public class Creep : MonoBehaviour {
             float distance = Vector3.Distance(transform.position, target.transform.position);
 
             // Walk To
-            if (distance > attackRange)
+            if (   distance > attackRange 
+               || Physics.Raycast(transform.position, target.transform.position, Mathf.Infinity, 1<<8))
             {
                 navAgent.Resume();
                 navAgent.destination = target.transform.position;

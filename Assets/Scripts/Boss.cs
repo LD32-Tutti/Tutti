@@ -39,15 +39,39 @@ public class Boss : MonoBehaviour {
         const float speed = 10.0f;
         if (Input.GetKey("z") || Input.GetKey("w")) {
             transform.position += new Vector3(0.0f, 0.0f, speed*Time.deltaTime);
+            Quaternion newAngles = Quaternion.Euler(
+                    gameObject.transform.rotation.eulerAngles.x,
+                    0,
+                    gameObject.transform.rotation.eulerAngles.z
+            );
+            transform.rotation = Quaternion.Slerp(transform.rotation, newAngles, Time.deltaTime * speed);
         }
         if(Input.GetKey("s")) {
             transform.position += new Vector3(0.0f, 0.0f, -speed*Time.deltaTime);
+            Quaternion newAngles = Quaternion.Euler(
+                    gameObject.transform.rotation.eulerAngles.x,
+                    180,
+                    gameObject.transform.rotation.eulerAngles.z
+            );
+            transform.rotation = Quaternion.Slerp(transform.rotation, newAngles, Time.deltaTime * speed);
         }
         if(Input.GetKey("d")) {
             transform.position += new Vector3(speed*Time.deltaTime, 0.0f, 0.0f);
+            Quaternion newAngles = Quaternion.Euler(
+                    gameObject.transform.rotation.eulerAngles.x,
+                    90,
+                    gameObject.transform.rotation.eulerAngles.z
+            );
+            transform.rotation = Quaternion.Slerp(transform.rotation, newAngles, Time.deltaTime * speed);
         }
         if(Input.GetKey("q") || Input.GetKey("a")) {
             transform.position += new Vector3(-speed*Time.deltaTime, 0.0f, 0.0f);
+            Quaternion newAngles = Quaternion.Euler(
+                    gameObject.transform.rotation.eulerAngles.x,
+                    270,
+                    gameObject.transform.rotation.eulerAngles.z
+            );
+            transform.rotation = Quaternion.Slerp(transform.rotation, newAngles, Time.deltaTime * speed);
         }
 
         if (Input.GetKeyDown("space")) {

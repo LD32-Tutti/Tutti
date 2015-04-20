@@ -1,0 +1,7 @@
+*
+!.gitignore
+
+!index.html
+!UnityObject2.js
+!webbuild.unity3d
+!jquery.min.js

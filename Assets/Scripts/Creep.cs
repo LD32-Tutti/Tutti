@@ -51,4 +51,15 @@ public class Creep : MonoBehaviour {
     {
         gameObject.GetComponent<HitPoint>().hp -= damage;
     }
+
+    void OnCollisionEnter (Collision col){
+        if(navAgent.pathStatus == NavMeshPathStatus.PathPartial){
+
+            if(col.gameObject.name == "Wall(Clone)" && navAgent.remainingDistance<0.5f){
+                DestroyObject(col.gameObject);
+                navAgent.Resume();
+            }
+        }
+        
+    }
 }

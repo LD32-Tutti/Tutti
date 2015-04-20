@@ -1,14 +1,18 @@
 fileFormatVersion: 2
-guid: 4ee4453ea87d60c48ad2fc2530c3f642
-timeCreated: 1429478508
+guid: 630fd2dd8f08c0d4896d8ba9c5082965
+timeCreated: 1429563267
 licenseType: Free
 ModelImporter:
   serializedVersion: 18
   fileIDToRecycleName:
-    100000: //RootNode
-    400000: //RootNode
-    2300000: //RootNode
-    3300000: //RootNode
+    100000: Cylindre
+    100002: Neutre_1
+    100004: //RootNode
+    400000: Cylindre
+    400002: Neutre_1
+    400004: //RootNode
+    2300000: Neutre_1
+    3300000: Neutre_1
     4300000: Neutre_1
   materials:
     importMaterials: 1

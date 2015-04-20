@@ -11,14 +11,13 @@ public class Boss : MonoBehaviour {
     private HitPoint hitPoints;
     private GameObject uiGameOver;
 
-    Vector3 scaleBase, scaleTarget;
+    Vector3 scaleBase;
 
 	// Use this for initialization
 	void Awake () {
 	    rigidBody = GetComponent<Rigidbody>();
         hitPoints = gameObject.GetComponent<HitPoint>();
         scaleBase = transform.localScale;
-        scaleTarget = scaleBase;
         uiGameOver = GameObject.Find("GameOverCanvas");
 	}
 
@@ -54,12 +53,10 @@ public class Boss : MonoBehaviour {
         if (Input.GetKeyDown("space")) {
             if (Math.Abs(transform.position.y - 2.5f) < 0.2) {//origin at +2.0 from floor
                 rigidBody.AddForce(new Vector3(0.0f, 200.0f, 0.0f), ForceMode.Impulse);
-                //scaleTarget = scaleBase*1.5f;
                 StartCoroutine(Fall());
             }
         }
 
-        //transform.localScale = Vector3.Lerp(transform.localScale, scaleTarget, 10f*Time.deltaTime);
         transform.localScale = (float)(1+0.1*(transform.position.y-2.5))*scaleBase;
 	
 	}
@@ -90,7 +87,6 @@ public class Boss : MonoBehaviour {
             new Vector3(transform.position.x, 0f, transform.position.z), 
             Quaternion.LookRotation(new Vector3(0f, 1f, 0f))
         );
-        scaleTarget = scaleBase;
 
         //Damage
         Vector3 center = new Vector3(
